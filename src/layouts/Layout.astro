@@ -21,6 +21,14 @@ import Nav from "../components/Nav.astro";
     class="group grid min-h-dvh grid-rows-[auto,1fr] bg-neutral-200 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50"
     data-nav-open="false"
   >
+    <script is:inline>
+      const darkMode =
+        localStorage.getItem("darkMode") ??
+        String(window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+      const body = document.querySelector("body");
+      if (body) body.dataset.darkMode = darkMode;
+    </script>
     <Nav />
     <Header />
     <div class="size-full">
@@ -28,12 +36,3 @@ import Nav from "../components/Nav.astro";
     </div>
   </body>
 </html>
-
-<script>
-  const darkMode =
-    localStorage.getItem("darkMode") ??
-    String(window.matchMedia("(prefers-color-scheme: dark)").matches);
-
-  const body = document.querySelector("body");
-  if (body) body.dataset.darkMode = darkMode;
-</script>
