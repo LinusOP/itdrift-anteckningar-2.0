@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.prose-code-styles {
+  /* Style inline code */
+  @apply prose-code:rounded-md prose-code:border prose-code:bg-neutral-950 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-neutral-50;
+
+  /* Style code block (pre) */
+  @apply prose-pre:border prose-pre:!bg-neutral-950 prose-pre:font-semibold;
+
+  /* Fix code tag inside pre */
+  @apply *:prose-pre:border-none *:prose-pre:bg-transparent *:prose-pre:px-0 *:prose-pre:py-0;
+}
+
+.scrollbar-styles {
+  --scrollBarBG: theme(colors.neutral.700);
+  --thumbBG: theme(colors.neutral.400);
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollBarBG);
+}
+
+.scrollbar-styles::-webkit-scrollbar {
+  width: theme(spacing.3);
+}
+
+.scrollbar-styles::-webkit-scrollbar-track {
+  background-color: var(--scrollBarBG);
+}
+
+.scrollbar-styles::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+}

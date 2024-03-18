@@ -1,0 +1,11 @@
+---
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+if (slug?.endsWith(".md")) {
+  return Astro.redirect(`/notes/${slug.slice(0, -3)}`);
+} else {
+  return Astro.redirect("/404");
+}
+---

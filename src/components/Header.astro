@@ -1,0 +1,32 @@
+---
+import { Menu, PenSquare } from "lucide-react";
+---
+
+<div
+  class="sticky top-0 z-10 flex items-center gap-4 bg-neutral-200 p-4 pb-0 text-neutral-50 *:shadow-md dark:bg-neutral-900 dark:text-neutral-900"
+>
+  <button
+    class="rounded-lg bg-neutral-900 p-3 dark:bg-neutral-200"
+    id="navOpen"
+  >
+    <Menu size={32} />
+  </button>
+  <header
+    class="w-full rounded-lg bg-neutral-900 px-4 py-2 text-center text-2xl font-extrabold md:text-left md:text-4xl dark:bg-neutral-200"
+  >
+    <a href="/" class="flex items-center gap-2">
+      <PenSquare size={42} />
+      <span class="hidden md:inline">IT-Drifttekniker - </span>Anteckningar
+    </a>
+  </header>
+</div>
+
+<script>
+  const openBtn = document.querySelector("#navOpen");
+
+  openBtn?.addEventListener("click", () => {
+    const body = document.querySelector("body");
+
+    if (body) body.dataset.navOpen = "true";
+  });
+</script>

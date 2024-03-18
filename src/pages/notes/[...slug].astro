@@ -1,0 +1,30 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+import "katex/dist/katex.min.css";
+
+export const getStaticPaths = (async () => {
+  const notes = await getCollection("notes");
+  return notes.map((entry) => ({
+    params: {
+      slug: entry.slug,
+    },
+    props: {
+      entry,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout>
+  <div
+    class="prose-code-styles prose prose-base prose-neutral mx-auto w-full !max-w-screen-lg overflow-x-hidden px-5 pb-24 pt-8 md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-headings:my-2 prose-h1:text-center prose-table:w-fit prose-thead:text-center"
+  >
+    <Content />
+  </div>
+</Layout>

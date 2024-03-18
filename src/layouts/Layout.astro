@@ -1,0 +1,39 @@
+---
+import "../styles/base.css";
+import "@fontsource-variable/inter/index.css";
+import Header from "../components/Header.astro";
+import Nav from "../components/Nav.astro";
+---
+
+<!doctype html>
+<html lang="en" class="scrollbar-styles">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>IT-Drifttekniker - Anteckningar</title>
+  </head>
+  <body
+    class="group grid min-h-dvh grid-rows-[auto,1fr] bg-neutral-200 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50"
+    data-nav-open="false"
+  >
+    <Nav />
+    <Header />
+    <div class="size-full">
+      <slot />
+    </div>
+  </body>
+</html>
+
+<script>
+  const darkMode =
+    localStorage.getItem("darkMode") ??
+    String(window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+  const body = document.querySelector("body");
+  if (body) body.dataset.darkMode = darkMode;
+</script>

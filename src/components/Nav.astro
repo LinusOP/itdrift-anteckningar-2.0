@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+import { X } from "lucide-react";
+import NavMenu from "../components/NavMenu.tsx";
+import DarkModeSelector from "../components/DarkModeSelector.tsx";
+
+const notes = await getCollection("notes");
+---
+
+<div
+  class="fixed bottom-0 left-0 top-0 z-20 row-span-2 grid h-dvh w-dvw grid-cols-[auto,1fr] gap-2 bg-neutral-900 p-4 pb-2 text-xl font-bold text-neutral-900 shadow-[16px_12px_24px_0_rgba(0,0,0,0.75)] transition-transform group-data-[nav-open=false]:-translate-x-full group-data-[nav-open=false]:shadow-none md:w-[420px]"
+>
+  <div class="flex flex-col gap-2">
+    <button
+      class="grid aspect-square place-items-center rounded-lg bg-neutral-200 p-3"
+      id="navClose"
+    >
+      <X size={32} />
+    </button>
+    <DarkModeSelector client:only="react" />
+  </div>
+  <div class="scrollbar-styles h-full overflow-y-auto pr-2">
+    <NavMenu notes={notes} client:only="react" />
+  </div>
+  <span class="col-span-2 mt-auto h-fit text-center text-sm text-neutral-50"
+    >Skapad av Linus OP - <a href="" target="_blank" rel="noopener noreferrer"
+      >Se Koden</a
+    ></span
+  >
+</div>
+
+<script>
+  const openBtn = document.querySelector("#navClose");
+
+  openBtn?.addEventListener("click", () => {
+    const body = document.querySelector("body");
+
+    if (body) body.dataset.navOpen = "false";
+  });
+</script>
