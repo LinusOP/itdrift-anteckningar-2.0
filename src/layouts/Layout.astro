@@ -8,14 +8,6 @@ import Nav from "../components/Nav.astro";
 <!doctype html>
 <html lang="en" class="scrollbar-styles">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>IT-Drifttekniker - Anteckningar</title>
     <script is:inline>
       const darkMode =
         localStorage.getItem("darkMode") ??
@@ -24,6 +16,14 @@ import Nav from "../components/Nav.astro";
       const html = document.querySelector("html");
       if (html) html.dataset.darkMode = darkMode;
     </script>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>IT-Drifttekniker - Anteckningar</title>
   </head>
   <body
     class="group grid min-h-dvh grid-rows-[auto,1fr] bg-neutral-200 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50"
