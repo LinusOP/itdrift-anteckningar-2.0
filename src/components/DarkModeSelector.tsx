@@ -11,16 +11,16 @@ const DarkModeSelector = () => {
       className="flex flex-col items-center justify-center"
       defaultValue={darkMode ?? "device"}
       onValueChange={(val) => {
-        const body = document.querySelector("body");
+        const html = document.querySelector("html");
         if (val === "device") {
           localStorage.removeItem("darkMode");
-          if (body)
-            body.dataset.darkMode = String(
+          if (html)
+            html.dataset.darkMode = String(
               window.matchMedia("(prefers-color-scheme: dark)").matches,
             );
         } else {
           localStorage.setItem("darkMode", val);
-          if (body) body.dataset.darkMode = val;
+          if (html) html.dataset.darkMode = val;
         }
       }}
     >
