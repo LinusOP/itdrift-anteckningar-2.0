@@ -19,7 +19,11 @@ export default defineConfig({
     react(),
   ],
   output: "hybrid",
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
   markdown: {
     remarkPlugins: [remarkGFM, remarkMath],
     rehypePlugins: [
