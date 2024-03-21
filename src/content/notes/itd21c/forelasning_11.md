@@ -52,7 +52,7 @@ Generellt gäller att har vi 16 kombinationer så har vi x bitar per symbol: $2^
 
 ### QAM - Quadrature Amplitude Modulation
 
-I teorin skulle vi kunna dela in vår fas i mindre och mindre vinklar, men detta blir snabbt nästintill omöjligt att detektera av vår mottagare. Hur gör vi? Jo vi modulerar _också_ med hjälp av amplituden. QAM använder våra fyra fasen sen tidigare, men modulerar också på amplituden. På så sätt kan vi få flera olika kombinationer i varje symbol.
+I teorin skulle vi kunna dela in vår fas i mindre och mindre vinklar, men detta blir snabbt nästintill omöjligt att detektera av vår mottagare. Hur gör vi? Jo vi modulerar _också_ med hjälp av amplituden. QAM använder våra fyra fasen sen tidigare, men modulerar också på amplituden. På så sätt kan vi få flera olika kombinationer i varje symbol. Den skrivs ut antingen QAM _nummer_ där numret är antalet kombinationer, alternativt _nummer_-QAM, t.ex QAM 64 eller 64-QAM.
 
 Den lägsta versionen av QAM är QAM 16, vilket innebär att den har 16 olika kombinationer i varje symbol. Det vet vi ju då innebär 4 bitar per symbol. Den nyaste, som används i WiFi 6, är QAM 1024. $\log_2 1024 = 10$, vi kan skicka 10 bitar i varje symbol med den!
 
