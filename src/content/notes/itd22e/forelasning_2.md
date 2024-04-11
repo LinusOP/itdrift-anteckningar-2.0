@@ -76,3 +76,9 @@ Registrerade enheter används om användaren äger enheten men vill komma åt re
 #### Ansluten
 
 Anslutna enheter är enheter som ägs av företaget och man loggar in på datorn med sitt Entra ID konto och funkar mer eller mindre som att vara ansluten till en lokar domän. Med anslutna enheter får man direkt tillgång till resurser utan vidare autentisering.
+
+## Hybridlösning
+
+Om man redan har en lokal AD lösning, hur gör man då? Jo, Entra har konceptet hybrid-miljö, där man använder Entra Connect för att ansluta sin lokala domän till Entra. På så sätt skickas alla konton upp till molnet för att kunna användas i Entra.
+
+Entra connect körs som en applikation på DC och synkar fram och tillbaka mellan lokala AD och Entra. På så sätt kan man utnyttja Azure utan att behöver göra om hela sin miljö i molnet.
