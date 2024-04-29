@@ -3,7 +3,7 @@ title: Föreläsning 5
 order: 50
 ---
 
-# Föreläsning 5 - Autentisering, lokal vs remote
+# Föreläsning 5 - Lokal autentisering
 
 Principen bakom autentisering är helt enkelt att bevisa vem man är, dvs att det är just du som faktiskt loggar in.
 
@@ -37,9 +37,9 @@ Utöver dessa finns de två ovanligare:
 
 MFA bygger på att man kombinerar minst två av dessa principerna, t.ex att man skriver in både sitt lösenord samt får en kod till mobilen, då kombinerar man något man vet med något man har.
 
-## Lokal autentisering - Lösenord
+## Lösenord
 
-När vi autentiserar oss lokalt så har vi en liten risk för avlyssning när data skickas, eftersom den bara skickas inom datorn. Ofta har lösenord använts i de här fallen men mer och mer gå vi över till andra metoder, lösenord fungerar ok sålänge de är tillräckligt långa.
+När vi autentiserar oss lokalt så har vi en låg risk för avlyssning när data skickas, eftersom den bara skickas inom datorn. Ofta har lösenord använts i de här fallen men mer och mer gå vi över till andra metoder, lösenord fungerar ok sålänge de är tillräckligt långa.
 
 När vi använder lösenordsautentisering är principen som så:
 
@@ -60,7 +60,7 @@ På en icke domänansluten dator lagras lösenord i den s.k SAM-databasen, som f
 
 ### Linux
 
-I Linux sparas användare, dess namn och grupper mm i en fil, `/etc/passwd`, denna fill har alla inloggade användare tillgång till. Dock sparas inte lösenordet i denna filen, istället gör man numera så att lösenordshasher spara i en annan fil, `/etc/shadow`, som man måste ha administratörsbehörighet för att komma åt.
+I Linux sparas användare, dess namn och grupper mm i en fil, `/etc/passwd`, denna fil har alla inloggade användare tillgång till. Dock sparas inte lösenordet i denna filen, istället gör man numera så att lösenordshasher spara i en annan fil, `/etc/shadow`, som man måste ha administratörsbehörighet för att komma åt.
 
 En annan viktig sak som linux gör är att använda s.k salt. Detta innebär helt enkelt att varje användare får en slumpmässig sträng som läggs efter lösenordet innan det hashas. Anledningen är att skilja hashvärden även med samma lösenord, för att angripare inte ska kunna se om flera användare använder samma lösenord (ofta kanske ett svagare lösenord).
 
@@ -90,3 +90,11 @@ Utgår vi istället från alternativ 3 får vi $62^8 = 218340105584896$ eller ca
 Problemet med att räkna såhär är att lösenord är inte helt slumpmässiga, användaren ska trots allt också komma ihåg lösenordet. Därav väljer användare enklare lösenord som lättare går att komma ihåg, ofta bygger på vanliga ord osv. Angripare behöver därmed inte testa precis alla kombinationer utan kan istället använda listor på vanliga lösenord, vanliga ord som folk använder i sina lösenord osv.
 
 Något som också används är listor med färdiga hashvärden, där personer har hashat t.ex de 10 000 vanligaste lösenorden med vanliga hasfunktioner, då är det bara att jämföra hashvärden och angriparen behöver inte beräkna något. Dessa kallas rainbow tables. De är också en viktig anledning till att använda salt med sina lösenord, då stämmer inte hashen av ett lösenord med hashen i listan, även om det är samma lösenord.
+
+## Biometrik
+
+Där finns många olika typer av biometrik, vanliga idag är fingeravtryck och ansiktsigenkänning. Generellt är att någon sorts sensor gör en avläsning på en eller oftast flera saker. På ansiktet kan det t.ex vara höjd och bredd, avstånd mellan ögon osv.
+
+Här finns en viktig princip, nämligen att avläsningarna kommer vara olika var gång, du kanske inte håller fingret på läsaren likadant, du håller ditt ansikte olika avstånd från kameran osv. Därmed måste systemet hela tiden göra ungefärlig jämförelse där "nära nog" räcker.
+
+Detta skapar vissa problem, om systemet är för slappt så blir risken större att man får en "false positive", dvs att man släpper in en annan person. Är man däremot för strikt så blir risken stor att man får "false negative", att rätt användare inte släpps in. Man behöver därmed hitta ett mellanläge där användaren slipper bli nekad ofta men som samtidigt är strikt nog för att inte släppa in obehöriga.
