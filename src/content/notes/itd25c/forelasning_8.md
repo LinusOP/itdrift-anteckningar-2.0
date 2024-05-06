@@ -78,3 +78,15 @@ Först sker en autentisering mellan de parter som ska skapa tunneln, antingen me
 För att skapa dessa sessioner så finns där olika protokoll, dessa protokoll bygger på ISAKMP (Internet Security Association and Key Management Protocol) som är ett ramverk för autentisering och förhandling om krypteringsmetoder och nycklar.
 
 Ett av dessa protokollen är IKEv2 (Internet Key Exchange version 2), som implementerar ISAKMP med hjälp av certifikat.
+
+## Modes
+
+IPSec kan köras i två lägen, beroende på i princip hur mycket av anslutningen man vill at IPSec ska ansvara för. Vilket läge som ska användas bestäms i handskakningen precis som allt annat. Totalt kan IPSec alltså köras i tre olika lägen, ESP eller AH headern i antingen Transport eller Tunnel mode.
+
+### Transport mode
+
+Här sköter IPSec enbart kryptering/integritet (beroende på om man kör AH eller ESP), och låter ett annat protokoll sköta själva tunneln, dvs att ändra IP headers osv. Detta är även aktuellt när man inte använder en tunnel alls men av något annat skäl vill kryptera eller skydda.
+
+### Tunnel mode
+
+Här hanterar IPSec även tunneln och sköter bytet av IP mellan de som används på internet och de som används internt i tunneln/det virtuella nätverket, precis som förklarat innan kring tunnlar.
