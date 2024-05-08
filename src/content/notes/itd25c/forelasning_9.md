@@ -44,7 +44,7 @@ De saker man la till i WPA ovanpå WEP kallas TKIP (Temporal Key Integrity Proto
 
 ## WPA2
 
-Till slut gick man faktiskt över till WPA2, det protokoll som faktiskt använder AES istället, stödjer ordentliga message integrity codes osv. WPA2 används ofta fortfarande idag i många fall (även om det nu också finns WPA3).
+Till slut gick man över till WPA2, det protokoll som faktiskt använder AES istället, stödjer ordentliga message integrity codes osv. WPA2 används ofta fortfarande idag i många fall (även om det nu också finns WPA3).
 
 Notera att man med WPA2 tekniskt sett kan använda TKIP, men aldrig bör göra det då det inte är säkert. Hela anledningen till WPA2 är att komma bort från det som gjorde både WEP och WPA/TKIP osäkert.
 
@@ -52,12 +52,42 @@ WPA2 finns i två varianter, PSK (Pre-Shared Key) som bygger på wifi-lösnord, 
 
 ### PSK
 
-I PSK så skapas en "pairwise master-key" som är en kombination av lösenordet och SSID som hashas, utifrån denna skapas sedan individuella nycklar för varje ansluten klient. Det är detta de flesta använder hemma eller på mindre företag.
+I PSK så bygger krypteringen på att klienten och APn har samma lösenord, och skapar nycklar utifrån den. TIll skillnad från WEP/WPA så vill man här ha individuella session keys för varje klient för att skydda från intern avlyssning.
+
+#### Handskakning
+
+_Vi utgår från att PMK är skapad och att klienten redan bett om att få ansluta._
+
+APn skickar först ett slumptal till klienten, kallat "ANonce" (A för Access). Klienten skapar sedan ett eget slumptal "SNone (S för station, gammal betäckning för den som ansluter till en AP) och skickar detta till APn, när SNonce skickas läggs även en MIC (Message Integrity Code) på.
+
+Klienten kommer sedan ta ANonce från APn, sin SNonce, samt PMK och stoppa in i en hashfunktion. Resultatet blir en nyckel som kallas Pairwise Transit Key (PTK), detta blir vår session key. APn kommer göra samma sak med sin ANonce samt SNonce från klienten och PMK, och kan på så sätt bilda samma PTK.
+
+En viktig princip är att både klient och AP bevisar för varandra att de har samma lösenord. När klienten skickar SNonce lägger den på en Message Integrity Code (MIC), som baseras på vår PTK. När APn sedan bildar sin PTK verifierar den MIC, stämmer det inte antar APn att det beror på att klienten har samma PMK och därav att lösenordet är fel.
+
+Om MIC stämde så skickar APn tillbaka sin GTK (Group Temporal Key), en nyckel som delas av alla klienter och som används för att kryptera broadcastmeddelanden (annars hade broadcast meddelanden behövt krypteras en gång per klient med varje PTK). På detta meddelandent lägger APn på en egen MIC. Om denna MIC stämmer så vet klienten också att APn har rätt PMK (dvs, rätt lösenord).
+
+När allt detta är gjort, MIC stämmer på båda håll och nycklar är delade så skickar klienten tillbaka ett sista OK (Ack) som säger att allt är bra och den vill skapa anslutningen.
+
+#### Angrepp
+
+Som vi ser så är det hemliga i handskakningen vår PMK (ANonce och SNonce skickas i klartext), och eftersom SSID är publikt kännt så är det i grunden vårt WiFi-lösenord som är det enda hemliga. Det en angripare då gör är att fånga ANonce och SNonce (då inklusive MIC). Sedan gissar man lösenord och räknar PTK för varje gissning, när man kan verifiera MIC med sin PTK har man gissat rätt lösenord.
+
+#### Problem
+
+Där finns även några problem med PSK, framförallt att alla delar samma PMK, så om man kan lösenordet kan man lyssna efter andras ANonce och SNonce och sedan räkna ut deras PTK, nätverket är alltså sårbart inifrån.
 
 ### Enterprise
 
-I Enterprise så hanterar inte APn själv autentiseringen utan de skickas vidare till en central server som då hanterar användarkonton och sköter autentisering, mellan dessa används ofta protokollet RADIUS.
+I Enterprise så hanterar inte APn själv autentiseringen utan klienter skickas vidare till en central server som då hanterar användarkonton och sköter autentisering, mellan dessa används ofta protokollet RADIUS.
 
-När en användare försöker ansluta så skapas en förbindelse mellan klienten och autentiseringsservern som på olika sätt krypteras eller skyddas, med hjälp av et protokoll som kallas EAP. När klienten sen autentiserat sig så skickar servern ett meddelande till APn att klienten är autentiserad, den skickar då en nyckel till APn och till klienten via sin krypterade förbindelse.
+När en användare försöker ansluta så skapas en förbindelse mellan klienten och autentiseringsservern som på olika sätt krypteras eller skyddas, med hjälp av ett protokoll som kallas EAP. När klienten sen autentiserat sig så skickar servern ett meddelande till APn att klienten är autentiserad, den skickar då en nyckel till APn och till klienten via sin krypterade förbindelse.
 
 APn och klienten använder sedan då vanlig WPA2 med en delad nyckel, skillnaden ligger helt enkelt i hur autentiseringen sker och var nyckeln skapas.
+
+### WPS - WiFi Protected Setup
+
+I WPA2 finns WPS, som är ett system för att ansluta enheter som saknar gränssnitt, dvs man kan inte skriva ett lösenord på dem. När WPS aktiveras på både APn och en enhet så skickar APn SSID och vår Pre-Shared Key till enheten, i klartext. Det är alltså väldigt osäkert eftersom en angripare också kan lyssna och få vår PSK.
+
+## WPA3
+
+WPA3 är den senaste versionen av WPA och byter ut det hash-baserade sättet att skapa nycklar i WPA2. Istället används "Dragonfly", ett protokoll som bygger på diffie-hellman för att skapa session keys. Det byter också ut WPS då det är osäkert. Sist så stödjer det säkrare AES med 192 eller 256 bitars nycklar (utöver 128 som WPA2 också stödjer).
