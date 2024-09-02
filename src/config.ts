@@ -6,4 +6,6 @@ export const courseCodes = {
   itd23e: "Infrastrukturella serversystem II",
   itd22e: "Molnbaserade tjänster",
   itd25c: "Säkerhet I",
+  itd31d: "Infrastrukturella serversystem III",
+  ite35d: "Grundläggande företagsekonomi",
 } as const;
