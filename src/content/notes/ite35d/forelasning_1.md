@@ -1,5 +1,5 @@
 ---
-title: "Föreläsning 1"
+title: Föreläsning 1
 order: 10
 ---
 
