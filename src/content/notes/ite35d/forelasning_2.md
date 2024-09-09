@@ -120,12 +120,20 @@ Avtal kommer i tre former:
 
 - Konsensualavtal - Ett avtal som inte måste ha en specifik form (de flesta avtal hamnar här), t.ex muntliga avtal och många skriftliga avtal
 - Formalavtal - Avtal som ska ha ett specifikt format, med vissa delar och i ett visst utförande
-- Realavtal - Ett avtal som kräver något fysiskt, t.ex en gåva (kräver då att gåvan faktiskt överlämnas)
+- Realavtal - Ett avtal som kräver någon prestation, t.ex vid ett gåvoavtal (kräver då att gåvan faktiskt överlämnas)
 
-### Vad är ett avtal?
+### Principerna bakom ett avtal
 
 Ett avtal består av ett _anbud_, en betänketid, och sedan en _accept_. Finns dessa delar uppstår ett avtal, förutsatt att inget uppstår på vägen som ställer till det.
 
-Anbudet kommer ofta i form av t.ex en offert eller liknande. Anbudet måste vara riktat till vissa bestämda personer, annars är det inte ett anbud.
+Anbudet kommer ofta i form av t.ex en offert eller liknande. Anbudet måste vara riktat till vissa bestämda personer, annars är det inte ett anbud. Detta är anledningen till att man t.ex inte kan kräva att en butik måste ge en ett pris som står i ett reklamblad, för reklambladet är inte specifikt riktat till en mottagare.
 
-Detta är aneldningen till att man t.ex inte kan kräva att en butik måste ge en ett pris som står i ett reklamblad, för reklambladet är inte specifikt riktat till en mottagare.
+Om man inte får ett svar, dvs det ges ingen accept så ingås inget avtal. Avtal kan inte heller ingås genom passivitet, t.ex kan man inte bindas om någon skulle säga "svarar du inte på anbudet antar vi att du godkänner det", det krävs ett aktivt godkännande.
+
+I vissa fall kan man få ett svar för sent, dvs betänketiden har gått ut. Om detta sker så ingås inte ett avtal, istället räknas det sena svaret som ett nytt motanbud, där avsändaren kan tacka nej till detta, de måste alltså inte ingå ett avtal i dessa fall bara för att du svarat.
+
+Accept kan också vara ogiltig (s.k oren) i andra fall, t.ex om man försökt gå in och ändra något i anbudet innan man svarar. T.ex om anbudet avser en svart bil men du ändrar och tackar jag till en "blå bil", detta är då en oren accept och ses som motanbud istället.
+
+Förutom detta har vi såklart själva betänketiden att ta i hänsyn. Den beror på bl.a typen av anbudet. Vid ett muntligt anbud har man ingen betänketid per automatik, svaretet måste komma vid samma tillfälle som anbudet.
+
+Vid ett skriftligt anbud så gäller en skälig betänketid, om ingen specifikt anges. Vad som räknas som skälig betänketid beror på olika aspekter, t.ex vad det är som ska avtalas. (Skälig betänketid för en traktor för 15 miljoner kr kanske kan tänkas va längre än pennor för 200 kr).
