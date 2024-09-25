@@ -1,6 +1,6 @@
 ---
-title: Föreläsnign 3
-order: 30
+title: Juridik - Föreläsning 3
+order: 130
 ---
 
 # Föreläsning 3 - Lagen om Offentlig Upphandling (LOU)

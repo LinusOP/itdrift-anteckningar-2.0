@@ -1,6 +1,6 @@
 ---
-title: Föreläsning 2
-order: 20
+title: Juridik - Föreläsning 2
+order: 120
 ---
 
 # Föreläsning 2 - Allmänt juridik & avtalsrätt

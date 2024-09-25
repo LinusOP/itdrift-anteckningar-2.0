@@ -1,6 +1,6 @@
 ---
-title: Föreläsning 1
-order: 10
+title: Juridik - Föreläsning 1
+order: 110
 ---
 
 # Föreläsning 1 - GDPR
