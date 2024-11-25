@@ -8,4 +8,6 @@ export const courseCodes = {
   itd25c: "Säkerhet I",
   itd31d: "Infrastrukturella serversystem III",
   ite35d: "Grundläggande företagsekonomi",
+  itd36c: "Systemhanterande serversystem",
+  itd32d: "Säkerhet II",
 } as const;
